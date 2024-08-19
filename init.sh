@@ -1,6 +1,5 @@
 #!/bin/bash
 
-git clone 
 # Build phase
 echo "Please enter Docker Hub username:"
 read user_DH
@@ -12,6 +11,7 @@ sudo docker build -t my_nodejs_app:latest nodejs/
 sudo docker tag my_nodejs_app $user_DH/my_nodejs_app
 
 # Build MongoDB image
+chmod +x mongo/init-data.sh
 sudo docker build -t my_mongo:latest mongo/
 sudo docker tag my_mongo $user_DH/my_mongo
 
@@ -21,7 +21,7 @@ sudo docker push $user_DH/my_nodejs_app:latest
 sudo docker push $user_DH/my_mongo:latest
 
 #deploy
-
+sed "s/\${user_DH}/$user_DH/g" docker-compose.yaml > ./tf/docker-compose.yaml
 cd tf
-sed "s/\${user_DH}/$user_DH/g" docker-compose.yaml
+terraform init
 terraform apply -auto-approve

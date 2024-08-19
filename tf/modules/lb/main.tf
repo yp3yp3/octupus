@@ -28,7 +28,7 @@ resource "aws_lb_listener" "http" {
 }
 resource "aws_lb_target_group" "instances" {
   name     = "example"
-  port     = 8080
+  port     = 3000
   protocol = "HTTP"
   vpc_id   = var.vpc_id
   health_check {
