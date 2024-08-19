@@ -54,7 +54,7 @@ resource "aws_instance" "my_app" {
     ${file("docker-compose.yaml")}
     END
     )" > docker-compose.yaml
-    sudo docker-compose up -d
+    sudo docker-compose -p nodejs_web_app up -d
   EOF
   tags = {
     Name = "MY_app_${count.index}"
