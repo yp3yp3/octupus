@@ -16,3 +16,12 @@ variable "environment_name" {
   type        = string
   default     = "production"
 }
+variable "instance_type" {
+  description = "ec2 instance type"
+  type        = string
+  default     = "t2.micro"
+   validation {
+    condition     = contains(["t2.micro", "t2.small", "t2.medium"], var.instance_type)
+    error_message = "The instance type must be one of 't2.micro', 't2.small', 't2.medium'."
+  }
+}
