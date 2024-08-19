@@ -1,6 +1,6 @@
 services:
   mongo:
-    image: ${user_DH}/my_mongo:latest  # שימוש בשם הדימוי שנבנה על בסיס המשתנים
+    image: ${user_DH}/my_mongo:latest 
     container_name: mymongoDB
     volumes:
       - "~/mongodb:/data/db"
@@ -9,7 +9,7 @@ services:
     restart: always
 
   webserver:
-    image: ${user_DH}/my_nodejs_app:latest  # שימוש בשם הדימוי שנבנה על בסיס המשתנים
+    image: ${user_DH}/my_nodejs_app:latest  
     container_name: nginx
     ports:
       - "3000:3000"
