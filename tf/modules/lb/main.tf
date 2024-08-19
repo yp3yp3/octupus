@@ -45,7 +45,7 @@ resource "aws_lb_target_group_attachment" "instances" {
     count = var.number_of_instance
   target_group_arn = aws_lb_target_group.instances.arn
   target_id        = var.instances_id[count.index]
-  port             = 8080
+  port             = 3000
 }
 
 
