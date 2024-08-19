@@ -36,7 +36,14 @@ resource "aws_security_group_rule" "allow_3000_inbound" {
   protocol    = "tcp"
   cidr_blocks = ["10.0.0.0/16"]
 }
-
+resource "aws_security_group_rule" "allow_all_outbound" {
+  type              = "egress"
+  security_group_id = aws_security_group.instances.id
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"  # "-1" means all protocols
+  cidr_blocks       = ["0.0.0.0/0"]
+}
 resource "aws_instance" "my_app" {
   count = var.number_of_instance
   ami           = "ami-0ae8f15ae66fe8cda"
